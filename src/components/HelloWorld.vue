@@ -14,6 +14,7 @@
         <h1 class="display-2 font-weight-bold mb-3">
           Welcome to Vuetify 3 Beta
         </h1>
+        {{ project_id }}
 
           <h4>Vite Preview</h4>
 
@@ -151,6 +152,11 @@ export default defineComponent({
           href: 'https://vuetifyjs.com/getting-started/frequently-asked-questions',
         },
       ],
+    }
+  },
+  computed: {
+    project_id () {
+      return import.meta.env.VITE_FIREBASE_PROJECT_ID
     }
   },
 })
