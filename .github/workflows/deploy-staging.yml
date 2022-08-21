@@ -9,8 +9,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: npm ci && npm run build-staging
-      - uses: FirebaseExtended/action-hosting-deploy@v0
+      - name: GitHub Action for Firebase
+        uses: w9jds/firebase-action@v11.5.0
         with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_PENIS_2_STAGING }}'
-          projectId: penis-2-staging
+          args: deploy -P staging
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
