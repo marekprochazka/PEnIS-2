@@ -1,0 +1,9 @@
+{
+  "projects": {
+    "default": "penis-2-staging",
+    "staging": "penis-2-staging",
+    "production": "penis-2-production"
+  },
+  "targets": {},
+  "etags": {}
+}
