@@ -8,7 +8,8 @@
 
 <script lang="ts" setup>
 import { onMounted } from 'vue';
-import {auth} from '@/firebase';
-  onMounted(() => {
-    console.log(auth.currentUser)});
+import { auth } from '@/firebase';
+onMounted(() => {
+  console.log(auth.currentUser);
+});
 </script>
