@@ -1,26 +1,14 @@
 <template>
   <v-app>
     <v-main>
-      <router-view/>
+      <router-view />
     </v-main>
   </v-app>
 </template>
 
-<script lang="ts">
-import { getAuth } from '@firebase/auth';
-import { defineComponent } from 'vue'
-import {auth} from '@/firebase'
-
-export default defineComponent({
-  name: 'App',
-
-  data () {
-    return {
-      //
-    }
-  },
-  created() {
-    console.log(auth.currentUser)
-  }
-})
+<script lang="ts" setup>
+import { onMounted } from 'vue';
+import {auth} from '@/firebase';
+  onMounted(() => {
+    console.log(auth.currentUser)});
 </script>
