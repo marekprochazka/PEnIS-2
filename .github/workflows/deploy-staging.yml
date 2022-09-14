@@ -4,9 +4,10 @@
 name: Deploy to staging
 'on': workflow_dispatch
 jobs:
-  create-envfile:
+  build_and_preview:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: Make envfile
         uses: SpicyPizza/create-envfile@v1.3
         with:
@@ -18,10 +19,6 @@ jobs:
           envkey_VITE_FIREBASE_APP_ID: ${{ secrets.APP_ID_STAGING }}
           file_name: .env.staging
           fail_on_empty: false
-  build_and_preview:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
       - run: npm ci && npm run build-staging
       - name: GitHub Action for Firebase
         uses: w9jds/firebase-action@v11.5.0
