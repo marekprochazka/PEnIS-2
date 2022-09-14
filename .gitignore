@@ -1,5 +1,7 @@
 .vscode
 .firebase/
+.env
+.idea/
 # Logs
 logs
 *.log
