@@ -11,9 +11,6 @@ import { onMounted } from "vue";
 import { auth } from "@/firebase";
 
 onMounted(() => {
-  console.log(import.meta.env.MODE);
-  console.log(import.meta.env);
-  console.log(import.meta.env.VITE_FIREBASE_API_KEY);
   console.log(auth.currentUser);
 });
 </script>
