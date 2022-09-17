@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ROUTES } from "@/constants";
+import { computed } from "vue";
 const routes = [
   {
     name: "Home",
@@ -12,10 +13,15 @@ const routes = [
     icon: "mdi-calendar",
   },
 ];
+
+const allowExpand = computed(() => {
+  return window.innerWidth > 600;
+});
+console.log(allowExpand)
 </script>
 
 <template>
-  <v-navigation-drawer expand-on-hover rail permanent>
+  <v-navigation-drawer :expand-on-hover="allowExpand" rail permanent>
     <v-list>
       <v-list-item
         prepend-avatar="https://findicons.com/files/icons/2711/free_icons_for_windows8_metro/512/guest.png"
