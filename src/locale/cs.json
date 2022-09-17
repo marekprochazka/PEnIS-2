@@ -1,7 +1,26 @@
 {
-  "p": {
+  "calendar": {
+    "title": "Rozpis služeb",
     "calendar": {
-      "title": "Rozpis služeb"
+      "title": "Kalendář"
+    },
+    "services": {
+      "dishes": {
+        "name": "Nádobí",
+        "description": "Každý večer si udělat čas a umít nádobí, které se nahromadilo v kuchyni, případně i vyčistit okolí uzná-li za vhodné."
+      },
+      "floor": {
+        "name": "Podlaha",
+        "description": "Na konci týdne, než odjede domů si udělá čas na to, aby umyl podlahu."
+      },
+      "hygiene_places": {
+        "name": "Záchod + koupelna",
+        "description": "Na konci týdne, než odjede domů si udělá čas na to, aby zkontroloval stav koupelny a záchodu a uzná-li za vhodné, tak vyčistí co je potřeba."
+      },
+      "vacuuming": {
+        "name": "Vysávání",
+        "description": "Na konci týdne, než odjede domů si udělá čas na to, aby vyluxoval."
+      }
     }
   }
 }
