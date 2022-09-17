@@ -17,7 +17,6 @@ const routes = [
 const allowExpand = computed(() => {
   return window.innerWidth > 600;
 });
-console.log(allowExpand)
 </script>
 
 <template>
