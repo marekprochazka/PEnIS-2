@@ -10,6 +10,7 @@ const services: ICalendarService[] = [
     name: t("calendar.services.dishes.name"),
     icon: "mdi-silverware-clean",
     description: t("calendar.services.dishes.description"),
+    note: t("calendar.services.dishes.note"),
   },
   {
     name: t("calendar.services.floor.name"),
@@ -55,7 +56,13 @@ const services: ICalendarService[] = [
         <span class="ml-3 font-weight-bold text-md-h5">{{ service.name }}</span>
       </v-expansion-panel-title>
       <v-expansion-panel-text>
-        {{ service.description }}
+        <div v-html="service.description" />
+        <div class="mt-3" v-if="service.note">
+          <p class="font-weight-bold text-md-h5">
+            {{ t("calendar.important_note") }}
+          </p>
+          <p>{{ service.note }}</p>
+        </div>
       </v-expansion-panel-text>
     </v-expansion-panel>
   </v-expansion-panels>

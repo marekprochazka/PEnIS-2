@@ -18,9 +18,9 @@ const routes = [
   <v-navigation-drawer expand-on-hover rail permanent>
     <v-list>
       <v-list-item
-        prepend-avatar="https://avatars.githubusercontent.com/u/50014167?v=4"
-        title="Mark Walker"
-        subtitle="mark@walker.lol"
+        prepend-avatar="https://findicons.com/files/icons/2711/free_icons_for_windows8_metro/512/guest.png"
+        title="Guest"
+        subtitle="guest"
       ></v-list-item>
     </v-list>
 

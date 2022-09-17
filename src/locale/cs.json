@@ -4,22 +4,24 @@
     "calendar": {
       "title": "Kalendář"
     },
+    "important_note": "Důležité upozornění!",
     "services": {
       "dishes": {
         "name": "Nádobí",
-        "description": "Každý večer si udělat čas a umýt nádobí, které se nahromadilo v kuchyni, případně i vyčistit okolí uzná-li za vhodné."
+        "description": "Každý večer si udělám čas na umytí nádobí, které se nahromadilo v kuchyni, případně i vyčistím okolí uznám-li za vhodné. <br /> Můžu také úklid vymáhat po někom jiném pokud vím, kdo byl \"autorem\".",
+        "note": "To že zrovna nemám službu neznamená, že se v kuchyni můžu chovat jako prase! Stále je mou povinností umývat svoje nádobí a když v kuchyni udělám bordel tak jej i uklidím. Služba slouží jen jako pojistka, aby se bordel nehromadil ne jako otrok pro všechny, kdo momentálně službu nemají."
       },
       "floor": {
         "name": "Podlaha",
-        "description": "Na konci týdne, než odjede domů si udělá čas na to, aby umyl podlahu."
+        "description": "Na konci týdne, než odjedu domů si udělám čas na to, abych umyl podlahu."
       },
       "hygiene_places": {
         "name": "Záchod + koupelna",
-        "description": "Na konci týdne, než odjede domů si udělá čas na to, aby zkontroloval stav koupelny a záchodu a uzná-li za vhodné, tak vyčistí co je potřeba."
+        "description": "Na konci týdne, než odjedu domů si udělám čas na to, abych zkontroloval stav koupelny a záchodu a uznám-li za vhodné, tak vyčistím co je potřeba."
       },
       "vacuuming": {
         "name": "Vysávání",
-        "description": "Na konci týdne, než odjede domů si udělá čas na to, aby vyluxoval."
+        "description": "Na konci týdne, než odjedu domů si udělám čas na to, abych vyluxoval."
       }
     }
   }
