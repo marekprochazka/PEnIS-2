@@ -15,7 +15,7 @@ const routes = [
 </script>
 
 <template>
-  <v-navigation-drawer expand-on-hover rail style="transform: translateX(0)">
+  <v-navigation-drawer expand-on-hover rail permanent>
     <v-list>
       <v-list-item
         prepend-avatar="https://avatars.githubusercontent.com/u/50014167?v=4"
