@@ -1,3 +1,7 @@
 {
-  "test": "Ahoj"
+  "p": {
+    "calendar": {
+      "title": "Rozpis služeb"
+    }
+  }
 }
