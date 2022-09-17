@@ -7,7 +7,7 @@
     "services": {
       "dishes": {
         "name": "Nádobí",
-        "description": "Každý večer si udělat čas a umít nádobí, které se nahromadilo v kuchyni, případně i vyčistit okolí uzná-li za vhodné."
+        "description": "Každý večer si udělat čas a umýt nádobí, které se nahromadilo v kuchyni, případně i vyčistit okolí uzná-li za vhodné."
       },
       "floor": {
         "name": "Podlaha",
