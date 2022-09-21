@@ -24,12 +24,6 @@ npm install
 npm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
-
 ### Run Headed Component Tests with [Cypress Component Testing](https://on.cypress.io/component)
 
 ```sh
