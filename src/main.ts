@@ -17,9 +17,11 @@ const i18n = createI18n({
     cs: cs_messages,
   },
 });
-const pinia = createPinia();
-const app = createApp(App).use(router).use(vuetify).use(i18n).use(pinia);
+const store = createPinia();
+const app = createApp(App).use(router).use(vuetify).use(i18n).use(store);
+
+import { useUserStore as userStorePostLoaded } from "@/stores/user";
 
 app.mount("#app");
 
-export { i18n };
+export { i18n, userStorePostLoaded };
