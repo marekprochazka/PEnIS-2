@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import Homepage from "@/views/Homepage/App.vue";
 import Calendar from "@/views/Calendar/App.vue";
 import Login from "@/views/Login/App.vue";
+import TimeLog from "@/views/TimeLog/App.vue";
 import { ROUTES } from "@/constants";
 import { auth } from "@/firebase";
 
@@ -20,6 +21,14 @@ const router = createRouter({
       path: ROUTES.CALENDAR,
       name: "calendar",
       component: Calendar,
+      meta: {
+        requiresAuth: true,
+      },
+    },
+    {
+      path: ROUTES.TIME_LOG,
+      name: "time-log",
+      component: TimeLog,
       meta: {
         requiresAuth: true,
       },

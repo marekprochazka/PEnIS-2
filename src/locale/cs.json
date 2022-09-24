@@ -28,6 +28,7 @@
   "navbar": {
     "home": "Domů",
     "calendar": "Kalendář",
+    "time_log": "Výkazy",
     "logout": "Odhlásit se",
     "close": "Zavřít"
   }

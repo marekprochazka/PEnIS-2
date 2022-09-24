@@ -16,6 +16,11 @@ const routes = [
     path: ROUTES.CALENDAR,
     icon: "mdi-calendar",
   },
+  {
+    name: t("navbar.time_log"),
+    path: ROUTES.TIME_LOG,
+    icon: "mdi-clock",
+  },
 ];
 
 const isNavbarOpen = ref(false);
