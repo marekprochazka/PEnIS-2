@@ -6,6 +6,7 @@ import { loadFonts } from "./plugins/webfontloader";
 import "./assets/entry.scss";
 import cs_messages from "./locale/cs.json";
 import { createI18n } from "vue-i18n";
+import { createPinia } from "pinia";
 
 loadFonts();
 
@@ -16,7 +17,9 @@ const i18n = createI18n({
     cs: cs_messages,
   },
 });
-
-const app = createApp(App).use(router).use(vuetify).use(i18n);
+const pinia = createPinia();
+const app = createApp(App).use(router).use(vuetify).use(i18n).use(pinia);
 
 app.mount("#app");
+
+export { i18n };

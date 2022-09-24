@@ -17,15 +17,25 @@ const routes = [
 const allowExpand = computed(() => {
   return window.innerWidth > 600;
 });
+
+import { auth } from "@/firebase";
+import { useUserStore } from "@/stores/user";
+
+const user = useUserStore().getUser;
+const logout = () => {
+  useUserStore().clearUser();
+  auth.signOut();
+  window.location.reload();
+};
 </script>
 
 <template>
   <v-navigation-drawer :expand-on-hover="allowExpand" rail permanent>
     <v-list>
       <v-list-item
-        prepend-avatar="https://findicons.com/files/icons/2711/free_icons_for_windows8_metro/512/guest.png"
-        title="Guest"
-        subtitle="guest"
+        :prepend-avatar="user.profilePicture"
+        :title="user.username"
+        :subtitle="user.email"
       ></v-list-item>
     </v-list>
 
@@ -39,6 +49,8 @@ const allowExpand = computed(() => {
         :title="route.name"
         :to="route.path"
       />
+      <v-list-item prepend-icon="mdi-logout" title="Logout" @click="logout">
+      </v-list-item>
     </v-list>
   </v-navigation-drawer>
 </template>

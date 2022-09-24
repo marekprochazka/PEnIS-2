@@ -19,6 +19,7 @@
   "dependencies": {
     "@mdi/font": "5.9.55",
     "firebase": "^9.9.3",
+    "pinia": "^2.0.22",
     "roboto-fontface": "*",
     "vue": "^3.2.37",
     "vue-i18n": "^9.2.2",
@@ -29,6 +30,7 @@
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.4",
+    "@types/firebase": "^3.2.1",
     "@types/node": "^16.11.47",
     "@types/webfontloader": "^1.0.0",
     "@vitejs/plugin-vue": "^3.0.3",
