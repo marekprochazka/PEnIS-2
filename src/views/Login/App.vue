@@ -1,11 +1,6 @@
 <script setup lang="ts">
 import { auth } from "@/firebase";
-import {
-  browserLocalPersistence,
-  GoogleAuthProvider,
-  setPersistence,
-  signInWithPopup,
-} from "firebase/auth";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { ROUTES } from "@/constants";
 import router from "@/router";
 import { useUserStore } from "@/stores/user";

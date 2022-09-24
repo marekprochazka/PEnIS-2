@@ -1,22 +1,24 @@
 <script setup lang="ts">
 import { ROUTES } from "@/constants";
-import { computed } from "vue";
+import { ref } from "vue";
+import { loadTranslator } from "@/utils";
+
+const t = loadTranslator();
+
 const routes = [
   {
-    name: "Home",
+    name: t("navbar.home"),
     path: ROUTES.HOME,
     icon: "mdi-home",
   },
   {
-    name: "Calendar",
+    name: t("navbar.calendar"),
     path: ROUTES.CALENDAR,
     icon: "mdi-calendar",
   },
 ];
 
-const allowExpand = computed(() => {
-  return window.innerWidth > 600;
-});
+const isNavbarOpen = ref(false);
 
 import { auth } from "@/firebase";
 import { useUserStore } from "@/stores/user";
@@ -30,7 +32,14 @@ const logout = () => {
 </script>
 
 <template>
-  <v-navigation-drawer :expand-on-hover="allowExpand" rail permanent>
+  <v-navigation-drawer
+    @mouseover="isNavbarOpen = true"
+    @mouseleave="isNavbarOpen = false"
+    @focusin="isNavbarOpen = true"
+    @focusout="isNavbarOpen = false"
+    :rail="!isNavbarOpen"
+    permanent
+  >
     <v-list>
       <v-list-item
         :prepend-avatar="user.profilePicture"
@@ -49,8 +58,15 @@ const logout = () => {
         :title="route.name"
         :to="route.path"
       />
-      <v-list-item prepend-icon="mdi-logout" title="Logout" @click="logout">
+      <v-list-item
+        prepend-icon="mdi-logout"
+        :title="t('navbar.logout')"
+        @click="logout"
+      >
       </v-list-item>
     </v-list>
+    <template v-slot:append v-if="isNavbarOpen">
+      <v-btn @click="isNavbarOpen = false" block>{{ t("navbar.close") }}</v-btn>
+    </template>
   </v-navigation-drawer>
 </template>

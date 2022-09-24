@@ -24,5 +24,11 @@
         "description": "Na konci týdne, než odjedu domů si udělám čas na to, abych vyluxoval."
       }
     }
+  },
+  "navbar": {
+    "home": "Domů",
+    "calendar": "Kalendář",
+    "logout": "Odhlásit se",
+    "close": "Zavřít"
   }
 }

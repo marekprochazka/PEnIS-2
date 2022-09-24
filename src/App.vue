@@ -9,7 +9,6 @@ import router from "@/router";
 import { ROUTES } from "@/constants";
 
 provide(TRANSLATOR, t);
-
 </script>
 
 <template>
