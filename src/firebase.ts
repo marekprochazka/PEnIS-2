@@ -22,8 +22,10 @@ const auth = getAuth(app);
 onAuthStateChanged(auth, (user) => {
   if (user) {
     userStorePostLoaded().setUser(getUserCredentials());
-    if (router.currentRoute.value.path === ROUTES.LOGIN) {
-      router.push(ROUTES.HOME);
+    if (router.currentRoute.value.path === ROUTES.LOGIN.path) {
+      const nextUrl =
+        router.currentRoute.value.query.nextUrl?.toString() ?? ROUTES.HOME.path;
+      router.push(nextUrl);
     }
   } else {
     userStorePostLoaded().clearUser();

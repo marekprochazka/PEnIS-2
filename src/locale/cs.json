@@ -30,6 +30,30 @@
     "calendar": "Kalendář",
     "time_log": "Výkazy",
     "logout": "Odhlásit se",
-    "close": "Zavřít"
+    "close": "Zavřít",
+    "projects": "Projekty"
+  },
+  "team_projects": {
+    "title": "Týmové projekty",
+    "current_project": "Aktuální projekt",
+    "current_project_name": "IFJ",
+    "roles": {
+      "devops": {
+        "name": "DevOps",
+        "description": "Správa gitu, issues, tvorba CI, nastavení editorů, linter"
+      },
+      "docs_manager": {
+        "name": "Manažer dokumentace",
+        "description": "Správa dokumentace, kontrola pull requestů a následné zařazování do dokumentace"
+      },
+      "lore_master": {
+        "name": "Lore master",
+        "description": "Actually rozumí tomu, co se dělá, organizace meetingů, roadmapy"
+      },
+      "tester": {
+        "name": "Tester",
+        "description": "Testování, reportování chyb, návrhy na vylepšení, píše testy a nastavuje standardy"
+      }
+    }
   }
 }

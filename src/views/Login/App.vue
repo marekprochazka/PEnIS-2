@@ -6,13 +6,23 @@ import router from "@/router";
 import { useUserStore } from "@/stores/user";
 import { getUserCredentials } from "@/utils";
 
+interface IProps {
+  nextUrl?: string;
+}
+
+const props = withDefaults(defineProps<IProps>(), {
+  nextUrl: ROUTES.HOME.path,
+});
+
+console.log(props.nextUrl);
+
 const signIn = async () => {
   const provider = new GoogleAuthProvider();
   const user = useUserStore();
   try {
     await signInWithPopup(auth, provider);
     user.setUser(getUserCredentials());
-    await router.push(ROUTES.HOME);
+    await router.push(props.nextUrl);
   } catch (error) {
     console.log(error);
   }

@@ -6,18 +6,14 @@ import { getAllGroups, createGroup } from "@/database/TimeLog";
 const groups = ref<ILogGroup[]>([]);
 
 const groupNameForm = ref("");
-const newGroup = async (name:string) => {
+const newGroup = async (name: string) => {
   await createGroup(name);
   groups.value = await getAllGroups();
-
 };
-
 
 onMounted(async () => {
   groups.value = await getAllGroups();
 });
-
-
 </script>
 
 <template>

@@ -8,18 +8,23 @@ const t = loadTranslator();
 const routes = [
   {
     name: t("navbar.home"),
-    path: ROUTES.HOME,
+    path: ROUTES.HOME.path,
     icon: "mdi-home",
   },
   {
     name: t("navbar.calendar"),
-    path: ROUTES.CALENDAR,
+    path: ROUTES.CALENDAR.path,
     icon: "mdi-calendar",
   },
   {
     name: t("navbar.time_log"),
-    path: ROUTES.TIME_LOG,
+    path: ROUTES.TIME_LOG.path,
     icon: "mdi-clock",
+  },
+  {
+    name: t("navbar.projects"),
+    path: ROUTES.PROJECTS.path,
+    icon: "mdi-folder",
   },
 ];
 
