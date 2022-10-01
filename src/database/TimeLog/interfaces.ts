@@ -4,9 +4,10 @@ export interface ILogGroup {
 }
 
 export interface ILog {
-  id: string;
+  id?: string;
   time: number;
+  date: string;
   note: string;
-  userId: string;
+  userEmail: string;
   groupId: string;
 }
