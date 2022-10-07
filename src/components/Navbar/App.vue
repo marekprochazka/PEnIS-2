@@ -28,7 +28,8 @@ const routes = [
   },
 ];
 
-const isNavbarOpen = ref(false);
+const drawer = ref(true);
+const rail = ref(true);
 
 import { auth } from "@/firebase";
 import { useUserStore } from "@/stores/user";
@@ -43,20 +44,25 @@ const logout = () => {
 
 <template>
   <v-navigation-drawer
-    @mouseover="isNavbarOpen = true"
-    @mouseleave="isNavbarOpen = false"
-    @focusin="isNavbarOpen = true"
-    @focusout="isNavbarOpen = false"
-    :rail="!isNavbarOpen"
+    v-model="drawer"
+    :rail="rail"
     permanent
+    @click="rail = false"
   >
-    <v-list>
-      <v-list-item
-        :prepend-avatar="user.profilePicture"
-        :title="user.username"
-        :subtitle="user.email"
-      ></v-list-item>
-    </v-list>
+    <v-list-item
+      :prepend-avatar="user.profilePicture"
+      :title="user.username"
+      :subtitle="user.email"
+      nav
+    >
+      <template v-slot:append>
+        <v-btn
+          variant="text"
+          icon="mdi-chevron-left"
+          @click.stop="rail = !rail"
+        ></v-btn>
+      </template>
+    </v-list-item>
 
     <v-divider></v-divider>
 
