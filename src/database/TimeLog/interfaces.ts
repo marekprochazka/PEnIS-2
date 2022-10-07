@@ -6,7 +6,7 @@ export interface ILogGroup {
 export interface ILog {
   id?: string;
   time: number;
-  date: string;
+  date: Date;
   note: string;
   userEmail: string;
   groupId: string;

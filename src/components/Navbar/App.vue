@@ -81,8 +81,5 @@ const logout = () => {
       >
       </v-list-item>
     </v-list>
-    <template v-slot:append v-if="isNavbarOpen">
-      <v-btn @click="isNavbarOpen = false" block>{{ t("navbar.close") }}</v-btn>
-    </template>
   </v-navigation-drawer>
 </template>

@@ -17,8 +17,8 @@ const USER_EMAIL = getUserCredentials().email;
 
 // switches
 const showAllLogs = ref(false);
-const startDate = ref<string | null>(null);
-const endDate = ref<string | null>(null);
+const startDate = ref<Date | null>(null);
+const endDate = ref<Date | null>(null);
 
 // Groups
 const groups = ref<ILogGroup[]>([]);
@@ -34,10 +34,10 @@ const newGroup = async (name: string) => {
 // Specific logs
 const logs = ref<ILog[]>([]);
 const newLog = ref<ILog>({
-  date: "",
+  date: new Date(),
   time: 0,
   note: "",
-  groupId: "",
+  groupId: selectedGroup.value ? selectedGroup.value.id : "",
   userEmail: USER_EMAIL,
 });
 const saveLog = async () => {
@@ -45,10 +45,10 @@ const saveLog = async () => {
   await createLog(newLog.value);
   logs.value = await getLogs(generateQueryFilters(generateLogFilter()));
   newLog.value = {
-    date: "",
+    date: new Date(),
     time: 0,
     note: "",
-    groupId: "",
+    groupId: selectedGroup.value ? selectedGroup.value.id : "",
     userEmail: USER_EMAIL,
   };
 };
@@ -60,10 +60,10 @@ const generateLogFilter = (): TQueryFilter[] => {
     filters.push(["userEmail", "==", USER_EMAIL]);
   }
   if (startDate.value) {
-    filters.push(["date", ">=", startDate.value]);
+    filters.push(["date", ">=", startDate.value.toISOString()]);
   }
   if (endDate.value) {
-    filters.push(["date", "<=", endDate.value]);
+    filters.push(["date", "<=", endDate.value.toISOString()]);
   }
   if (selectedGroup.value) {
     filters.push(["groupId", "==", selectedGroup.value.id]);
@@ -84,33 +84,61 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div>TIME LOG</div>
-  <v-row>
-    <v-col cols="12" md="10">
-      <v-text-field v-model="groupNameForm" label="Group name" />
-    </v-col>
-    <v-col cols="12" md="2">
-      <v-btn block @click="newGroup(groupNameForm)">Create group</v-btn>
-    </v-col>
-  </v-row>
+  <div class="text-h3 mb-5">TIME LOG</div>
   <v-select
     :items="groups"
     item-title="name"
     item-value="id"
-    label="Select"
+    label="Select group"
     persistent-hint
     return-object
     single-line
+    class="mb-5"
     @update:modelValue="(value) => (selectedGroup = value)"
   />
-  <v-row>
-    <v-col cols="12" md="10">
-      <LogForm v-model="newLog" :locked="!selectedGroup" />
-    </v-col>
-    <v-col cols="12" md="2">
-      <v-btn @click="saveLog" block>Save log</v-btn>
-    </v-col>
-  </v-row>
+  <v-expansion-panels class="mb-5">
+    <v-expansion-panel>
+      <v-expansion-panel-title> Create new group</v-expansion-panel-title>
+      <v-expansion-panel-text>
+        <v-row>
+          <v-col cols="12" md="10">
+            <v-text-field v-model="groupNameForm" label="Group name" />
+          </v-col>
+          <v-col cols="12" md="2">
+            <v-btn block color="secondary" @click="newGroup(groupNameForm)"
+              >Create group
+            </v-btn>
+          </v-col>
+        </v-row>
+      </v-expansion-panel-text>
+    </v-expansion-panel>
+    <v-expansion-panel>
+      <v-expansion-panel-title>
+        Create new log (select group first)
+      </v-expansion-panel-title>
+      <v-expansion-panel-text>
+        <v-row>
+          <v-col cols="12" md="10">
+            <LogForm v-model="newLog" :locked="!selectedGroup" />
+          </v-col>
+          <v-col cols="12" md="2">
+            <v-btn @click="saveLog" block color="secondary">Save log</v-btn>
+          </v-col>
+        </v-row>
+      </v-expansion-panel-text>
+    </v-expansion-panel>
+    <v-expansion-panel>
+      <v-expansion-panel-title>
+        Filters (select group first)
+      </v-expansion-panel-title>
+      <v-expansion-panel-text>
+        <v-row>
+          <v-col cols="12" md="6"> </v-col>
+        </v-row>
+      </v-expansion-panel-text>
+    </v-expansion-panel>
+  </v-expansion-panels>
+
   <LogForm
     v-for="(log, index) in logs"
     v-model="logs[index]"

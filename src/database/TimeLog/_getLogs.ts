@@ -8,8 +8,14 @@ export default async (filter: QueryConstraint[]): Promise<ILog[]> => {
   const querySnapshot = await getDocs(q);
   const logs: ILog[] = [];
   querySnapshot.forEach((doc) => {
-    const data = { id: doc.id, ...doc.data() } as ILog;
+    console.log(doc.data());
+    const data = {
+      id: doc.id,
+      ...doc.data(),
+      date: new Date(doc.data().date),
+    } as ILog;
     logs.push(data);
   });
+  console.log(logs);
   return logs;
 };

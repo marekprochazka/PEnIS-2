@@ -1,5 +1,22 @@
 .google_calendar_panel {
   .v-expansion-panel-text__wrapper {
-    padding: 0!important;
+    padding: 0 !important;
+  }
+}
+
+.v3dp__datepicker {
+  height: 100%;
+
+  .v3dp__input_wrapper {
+    height: 100%;
+
+    input {
+      display: block;
+      height: 100%;
+      width: 100%;
+
+
+
+    }
   }
 }

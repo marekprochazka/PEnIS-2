@@ -6,5 +6,6 @@ import { db } from "@/firebase";
 export default async (log: ILog): Promise<void> => {
   await setDoc(doc(db, "logs", v4().toString()), {
     ...log,
+    date: log.date.toISOString(),
   });
 };

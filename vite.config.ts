@@ -10,8 +10,17 @@ import vuetify from "vite-plugin-vuetify";
 export default defineConfig({
   plugins: [vue(), vuetify({ autoImport: true })],
   resolve: {
-    alias: {
-      "@": fileURLToPath(new URL("./src", import.meta.url)),
-    },
-  },
+    alias: [
+      {
+        find: "@",
+        replacement: fileURLToPath(new URL("./src", import.meta.url))
+      },
+      {
+        // this is required for the SCSS modules
+        find: /^~(.*)$/,
+        replacement: "$1"
+      }
+    ]
+
+  }
 });

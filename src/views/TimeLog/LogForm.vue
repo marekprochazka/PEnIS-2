@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { ILog } from "@/database/TimeLog/interfaces";
 import { computed, ref, watch } from "vue";
+import DateInput from "@/components/DateInput/App.vue";
 
 const props = defineProps<{ modelValue: ILog; locked: boolean }>();
 
@@ -23,18 +24,15 @@ const emit = defineEmits(["update:modelValue"]);
       <v-row>
         <v-col cols="12" md="4">
           <v-text-field
+            block
             v-model="innerLog.time"
             label="Time"
             :disabled="props.locked"
           />
         </v-col>
         <v-col cols="12" md="4">
-          <v-text-field
-            v-model="innerLog.date"
-            label="Date"
-            :disabled="props.locked"
-          />
-        </v-col>
+          <DateInput v-model="innerLog.date" :disabled="props.locked"
+        /></v-col>
         <v-col cols="12" md="4">
           <v-text-field
             v-model="innerLog.note"
