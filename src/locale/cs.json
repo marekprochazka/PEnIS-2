@@ -55,5 +55,19 @@
         "description": "Testování, reportování chyb, návrhy na vylepšení, píše testy a nastavuje standardy"
       }
     }
+  },
+  "time_log": {
+    "time_log": "Výkazy",
+    "select_group": "Vyber skupinu",
+    "create_new_group": "Vytvořit novou skupinu",
+    "group_name": "Název skupiny",
+    "create_group": "Vytvořit skupinu",
+    "create_new_log": "Vytvořit nový výkaz (nejprve vyber skupinu)",
+    "save_log": "Uložit výkaz",
+    "filters": "Filtry (nejprve vyber skupinu)",
+    "show_all_logs": "Zobrazit všechny výkazy",
+    "stats": "Statistiky (nejprve vyber skupinu)",
+    "total_time": "Celkový čas",
+    "all": "Všichni"
   }
 }

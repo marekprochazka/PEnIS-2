@@ -13,6 +13,9 @@ import type { TQueryFilter } from "@/types";
 import LogForm from "./LogForm.vue";
 import DateInput from "@/components/DateInput/App.vue";
 import { useUserStore } from "@/stores/user";
+import { loadTranslator } from "@/utils";
+
+const t = loadTranslator();
 // constants
 const USER = useUserStore().getUser;
 const USER_EMAIL = USER.email;
@@ -28,9 +31,10 @@ const selectedGroup = ref<ILogGroup | null>(null);
 
 const groupNameForm = ref("");
 const newGroup = async (name: string) => {
+  groupNameForm.value = "";
   await createGroup(name);
   groups.value = await getAllGroups();
-  groupNameForm.value = "";
+  selectedGroup.value = groups.value.find((g) => g.name === name) || null;
 };
 
 // Specific logs
@@ -92,12 +96,12 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="text-h3 mb-5">TIME LOG</div>
+  <div class="text-h3 mb-5">{{ t("time_log.time_log") }}</div>
   <v-select
     :items="groups"
     item-title="name"
     item-value="id"
-    label="Select group"
+    :label="t('time_log.select_group')"
     persistent-hint
     return-object
     single-line
@@ -106,15 +110,20 @@ onMounted(async () => {
   />
   <v-expansion-panels class="mb-5" multiple>
     <v-expansion-panel>
-      <v-expansion-panel-title> Create new group</v-expansion-panel-title>
+      <v-expansion-panel-title>
+        {{ t("time_log.create_new_group") }}
+      </v-expansion-panel-title>
       <v-expansion-panel-text>
         <v-row>
           <v-col cols="12" md="10">
-            <v-text-field v-model="groupNameForm" label="Group name" />
+            <v-text-field
+              v-model="groupNameForm"
+              :label="t('time_log.group_name')"
+            />
           </v-col>
           <v-col cols="12" md="2">
-            <v-btn block color="secondary" @click="newGroup(groupNameForm)"
-              >Create group
+            <v-btn block color="secondary" @click="newGroup(groupNameForm)">
+              {{ t("time_log.create_group") }}
             </v-btn>
           </v-col>
         </v-row>
@@ -122,7 +131,7 @@ onMounted(async () => {
     </v-expansion-panel>
     <v-expansion-panel>
       <v-expansion-panel-title>
-        Create new log (select group first)
+        {{ t("time_log.create_new_log") }}
       </v-expansion-panel-title>
       <v-expansion-panel-text>
         <v-row>
@@ -130,14 +139,16 @@ onMounted(async () => {
             <LogForm v-model="newLog" :locked="!selectedGroup" />
           </v-col>
           <v-col cols="12" md="2">
-            <v-btn @click="saveLog" block color="secondary">Save log</v-btn>
+            <v-btn @click="saveLog" block color="secondary">
+              {{ t("time_log.save_log") }}
+            </v-btn>
           </v-col>
         </v-row>
       </v-expansion-panel-text>
     </v-expansion-panel>
     <v-expansion-panel>
       <v-expansion-panel-title>
-        Filters (select group first)
+        {{ t("time_log.filters") }}
       </v-expansion-panel-title>
       <v-expansion-panel-text>
         <v-row>
@@ -148,23 +159,29 @@ onMounted(async () => {
             <DateInput v-model="endDate" />
           </v-col>
           <v-col cols="12" md="4">
-            <v-checkbox v-model="showAllLogs" label="Show all logs" />
+            <v-checkbox
+              v-model="showAllLogs"
+              :label="t('time_log.show_all_logs')"
+            />
           </v-col>
         </v-row>
       </v-expansion-panel-text>
     </v-expansion-panel>
     <v-expansion-panel>
       <v-expansion-panel-title>
-        Stats (select group first)
+        {{ t("time_log.stats") }}
       </v-expansion-panel-title>
       <v-expansion-panel-text>
         <v-row>
           <v-col cols="12" md="4">
-            Group name: {{ selectedGroup?.name }}
+            {{ t("time_log.group_name") }}: {{ selectedGroup?.name }}
           </v-col>
-          <v-col cols="12" md="4"> Total time: {{ totalTimeSpend }} min </v-col>
           <v-col cols="12" md="4">
-            User: {{ showAllLogs ? "All" : USER_EMAIL }}
+            {{ t("time_log.total_time") }}: {{ totalTimeSpend }} min
+          </v-col>
+          <v-col cols="12" md="4">
+            {{ t("time_log.user") }}:
+            {{ showAllLogs ? t("time_log.all") : USER_EMAIL }}
           </v-col>
         </v-row>
       </v-expansion-panel-text>
