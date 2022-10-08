@@ -24,9 +24,10 @@ const emit = defineEmits(["update:modelValue"]);
       <v-row>
         <v-col cols="12" md="4">
           <v-text-field
+            type="number"
             block
             v-model="innerLog.time"
-            label="Time"
+            label="Time (minutes)"
             :disabled="props.locked"
           />
         </v-col>

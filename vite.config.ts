@@ -13,14 +13,13 @@ export default defineConfig({
     alias: [
       {
         find: "@",
-        replacement: fileURLToPath(new URL("./src", import.meta.url))
+        replacement: fileURLToPath(new URL("./src", import.meta.url)),
       },
       {
         // this is required for the SCSS modules
         find: /^~(.*)$/,
-        replacement: "$1"
-      }
-    ]
-
-  }
+        replacement: "$1",
+      },
+    ],
+  },
 });

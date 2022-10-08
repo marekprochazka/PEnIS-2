@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref, watch } from "vue";
+import { onMounted, ref, watch, computed } from "vue";
 import type { ILogGroup, ILog } from "@/database/TimeLog/interfaces";
 import {
   getAllGroups,
@@ -7,13 +7,15 @@ import {
   getLogs,
   createLog,
 } from "@/database/TimeLog";
-import { generateQueryFilters, getUserCredentials } from "@/utils";
+import { generateQueryFilters } from "@/utils";
 import type { TQueryFilter } from "@/types";
 
 import LogForm from "./LogForm.vue";
-
+import DateInput from "@/components/DateInput/App.vue";
+import { useUserStore } from "@/stores/user";
 // constants
-const USER_EMAIL = getUserCredentials().email;
+const USER = useUserStore().getUser;
+const USER_EMAIL = USER.email;
 
 // switches
 const showAllLogs = ref(false);
@@ -72,10 +74,16 @@ const generateLogFilter = (): TQueryFilter[] => {
 };
 
 watch([selectedGroup, showAllLogs, startDate, endDate], async () => {
-  logs.value = await getLogs(generateQueryFilters(generateLogFilter()));
+  if (selectedGroup.value) {
+    logs.value = await getLogs(generateQueryFilters(generateLogFilter()));
+  }
 });
 watch(selectedGroup, (value) => {
   newLog.value.groupId = value?.id || "";
+});
+
+const totalTimeSpend = computed(() => {
+  return logs.value.reduce((acc, log) => acc + log.time, 0);
 });
 
 onMounted(async () => {
@@ -96,7 +104,7 @@ onMounted(async () => {
     class="mb-5"
     @update:modelValue="(value) => (selectedGroup = value)"
   />
-  <v-expansion-panels class="mb-5">
+  <v-expansion-panels class="mb-5" multiple>
     <v-expansion-panel>
       <v-expansion-panel-title> Create new group</v-expansion-panel-title>
       <v-expansion-panel-text>
@@ -133,7 +141,31 @@ onMounted(async () => {
       </v-expansion-panel-title>
       <v-expansion-panel-text>
         <v-row>
-          <v-col cols="12" md="6"> </v-col>
+          <v-col cols="12" md="4">
+            <DateInput v-model="startDate" />
+          </v-col>
+          <v-col cols="12" md="4">
+            <DateInput v-model="endDate" />
+          </v-col>
+          <v-col cols="12" md="4">
+            <v-checkbox v-model="showAllLogs" label="Show all logs" />
+          </v-col>
+        </v-row>
+      </v-expansion-panel-text>
+    </v-expansion-panel>
+    <v-expansion-panel>
+      <v-expansion-panel-title>
+        Stats (select group first)
+      </v-expansion-panel-title>
+      <v-expansion-panel-text>
+        <v-row>
+          <v-col cols="12" md="4">
+            Group name: {{ selectedGroup?.name }}
+          </v-col>
+          <v-col cols="12" md="4"> Total time: {{ totalTimeSpend }} min </v-col>
+          <v-col cols="12" md="4">
+            User: {{ showAllLogs ? "All" : USER_EMAIL }}
+          </v-col>
         </v-row>
       </v-expansion-panel-text>
     </v-expansion-panel>
